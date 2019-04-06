@@ -81,7 +81,7 @@ In order to upload the library, the following steps must be reproduced:
 	iv. In the same library's level `build.gradle` file add the following line
 	
 	```
-	apply from: https://raw.githubusercontent.com/Sarquella/JCenter-Uploader/master/jcenter_uploader.gradle
+	apply from: 'https://raw.githubusercontent.com/Sarquella/JCenter-Uploader/master/jcenter_uploader.gradle'
 	```
 	
 3. **Package and upload**
