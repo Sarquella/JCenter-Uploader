@@ -31,21 +31,17 @@ In order to upload the library, the following steps must be reproduced:
 	
 	Where `USERNAME` is your *Bintray* username and `API_KEY` can be retrieved from https://bintray.com/profile/edit
 	
-	ii. Add the following lines in your library's level `build.gradle` file
+	ii. Add the following lines in your project's level `build.gradle` file
 	
 	```
 	buildscript {
-		repositories {
-			jcenter()
-		}
+		//...
 		dependencies {
-		    classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
-				classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+			//...
+			classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+			classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
 		}
 	}
-	apply plugin: 'com.android.library'
-	apply plugin: 'com.github.dcendents.android-maven'
-	apply plugin: 'com.jfrog.bintray'
 	```
 
 	iii. In the same library's level `build.gradle` file add the following lines. Replace the variable names with the appropriate values for your library
