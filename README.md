@@ -89,11 +89,6 @@ In order to upload the library, the following steps must be reproduced:
 Finally run the following two commands to upload the library to *JCenter*
 
 ```
-//Mac and Linux
-./gradle install
-./gradle bintrayUpload
-
-//Windows
 ./gradlew install
 ./gradlew bintrayUpload
 ```
