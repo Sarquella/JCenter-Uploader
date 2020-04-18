@@ -71,6 +71,7 @@ bintray {
     pkg {
         repo = bintrayRepo
         name = bintrayName
+        userOrg = project.findProperty("organization") ?: user
         desc = libDescription
         websiteUrl = webUrl
         vcsUrl = gitUrl
