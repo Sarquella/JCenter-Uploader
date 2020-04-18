@@ -4,11 +4,9 @@ A gradle script to easily upload Android libraries to *JCenter* for distribution
 
 **Reference:** For a full article explaining the whole process check this [Medium post](https://medium.com/@yegor_zatsepin/simple-way-to-publish-your-android-library-to-jcenter-d1e145bacf13) written by [Yegor Zatsepin](https://medium.com/@yegor_zatsepin)
 
-*Example:* For a real library uploaded using this process check *[LifecycleCells](https://github.com/Sarquella/LifecycleCells)*
-
 # Usage
 
-In order to upload the library, the following steps must be reproduced:
+In order to upload the library, the next steps must be followed:
 
 1. **Setup [Bintray](https://bintray.com)**
 
@@ -16,13 +14,13 @@ In order to upload the library, the following steps must be reproduced:
 	
 	ii. Create a new repository selecting `Maven` as type
 	
-	iii. Create a new package in the repository, adding the corresponding *GitHub* links (Website, Issue Tracker and VCS)
+	iii. Create a new package in the repository
 	
 2. **Setup the Android library**
 
 	i. Add the following lines to your `local.properties` file 
 	
-	**Important**: Make sure it is listed in your `.gitignore` file to avoid uploading it
+	> **Important**: Make sure it is listed in your `.gitignore` file to avoid uploading it
 	
 	```
 	bintray.user=USERNAME
@@ -31,7 +29,7 @@ In order to upload the library, the following steps must be reproduced:
 	
 	Where `USERNAME` is your *Bintray* username and `API_KEY` can be retrieved from https://bintray.com/profile/edit
 	
-	ii. Add the following lines in your project's level `build.gradle` file
+	ii. Add the following lines in your **project**'s level `build.gradle` file
 	
 	```
 	buildscript {
@@ -44,9 +42,11 @@ In order to upload the library, the following steps must be reproduced:
 	}
 	```
 
-	iii. In the same library's level `build.gradle` file add the following lines. Replace the variable names with the appropriate values for your library
+	iii. Add the following lines in your **library**'s level `build.gradle`. Replace the variable names with the appropriate values for your library
 	
-	**Note**: Your library will be finally published as `publishedGroupId:artifact:libraryVersion`
+	 **Note**: Your library will be finally published as `publishedGroupId:artifact:libraryVersion`
+	 
+	 > Only the mandatory parameters are listed in this example. For a full list of all the available parameters, as well as a brief explanation of each, see the [Parameters](#parameters) section
 	
 	```
 	ext {
@@ -54,27 +54,22 @@ In order to upload the library, the following steps must be reproduced:
 		bintrayName = 'BINTRAY_PACKAGE_NAME'
 
 		publishedGroupId = 'PUBLISHED_GROUP_ID'
-		libraryName = 'LIBRARY_NAME'
 		artifact = 'ARTIFACT'
+		
+		libraryVersion = 'LIBRARY_VERSION'
 
-		libraryDescription = 'LIBRARY_DESCRIPTION'
+		gitUrl = 'GIT_URL'
 
-		siteUrl = 'SITE_URL' //https://github.com/<username/<repository>
-		gitUrl = 'GIT_URL' //https://github.com/<username/<repository>.git
-
-		libraryVersion = 'LIBRARY_VERSION' //1.0.0
-
-		developerId = 'DEVELOPER_ID'
 		developerName = 'DEVELOPER_NAME'
 		developerEmail = 'DEVELOPER_EMAIL'
 
-		licenseName = 'LICENSE_NAME' //Ex: The Apache Software License, Version 2.0
-		licenseUrl = 'LICENSE_URL' //Ex: http://www.apache.org/licenses/LICENSE-2.0.txt
-		allLicenses = [LICENSES] //Ex: ["Apache-2.0"]
+		licenseId = 'LICENSE_ID'
+		licenseName = 'LICENSE_NAME' 
+		licenseUrl = 'LICENSE_URL'
 	}
 	```
 	
-	iv. In the same library's level `build.gradle` file add the following line
+	iv. Add the following line in your **library**'s level `build.gradle`
 	
 	```
 	apply from: 'https://raw.githubusercontent.com/Sarquella/JCenter-Uploader/master/jcenter_uploader.gradle'
@@ -82,12 +77,44 @@ In order to upload the library, the following steps must be reproduced:
 	
 3. **Package and upload**
 
-Finally run the following two commands to upload the library to *JCenter*
+Finally run the following two commands to upload the library to *Bintray*
 
 ```
 ./gradlew install
 ./gradlew bintrayUpload
 ```
+
+# Parameters 
+
+* `bintrayRepo`: Name of the *Bintray* repo created at *1.ii*
+
+* `bintrayName`: Name of the *Bintray* package created at *1.iii*
+
+* `organizaton` [*Optional*]: Organization's *Bintray* username. In case the repo's owner is an organization instead of the username provided at *2.i*
+
+* `publishedGroupId`: Library's group name (e.g., *com.company.library*)
+
+* `artifact`: Library's concrete artifact name
+
+* `libraryVersion`: Library's current version (e.g., *1.0.0*) 
+
+* `libraryDescription` [*Optional*]: Short description about the library 
+
+* `gitUrl`: Version control url (e.g., *https://github.com/<username/<repository>.git*)
+
+* `siteUrl` [*Optional*]: Library's website url
+
+* `developerName`: Library's developer name
+
+* `developerEmail`: Library's developer email
+
+*  `licenseId`: Library's license id (e.g., *Apache-2.0*)
+
+* `licenseName`: Library's license name (e.g., *The Apache Software License, Version 2.0*) 
+
+*  `licenseUrl`: Library's license url (e.g., *http://www.apache.org/licenses/LICENSE-2.0.txt*)
+
+* `overrideExisting` [*Optional*]: Boolean describing if the script should fail (`false`) or not (`true`) when trying to publish an already existing library's version, overriding it. Default is `false`
 
 # License
 
