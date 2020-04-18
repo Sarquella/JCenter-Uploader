@@ -4,16 +4,19 @@ apply plugin: 'com.github.dcendents.android-maven'
 group = publishedGroupId
 version = libraryVersion
 
+def webUrl = project.findProperty("siteUrl") ?: ''
+def libDescription = project.findProperty("libraryDescription") ?: ''
+
 install {
     repositories.mavenInstaller {
         pom.project {
-            packaging 'aar'
+            packaging project.findProperty("packageFormat") ?: 'aar'
             groupId publishedGroupId
             artifactId artifact
 
-            name libraryName
-            description libraryDescription
-            url siteUrl
+            name artifact
+            description libDescription
+            url webUrl
 
             licenses {
                 license {
@@ -31,7 +34,7 @@ install {
             scm {
                 connection gitUrl
                 developerConnection gitUrl
-                url siteUrl
+                url webUrl
             }
         }
     }
@@ -68,16 +71,16 @@ bintray {
     pkg {
         repo = bintrayRepo
         name = bintrayName
-        desc = libraryDescription
-        websiteUrl = siteUrl
+        desc = libDescription
+        websiteUrl = webUrl
         vcsUrl = gitUrl
         licenses = allLicenses
         dryRun = false
         publish = true
-        override = false
+        override = project.findProperty("overrideExisting") ?: false
         publicDownloadNumbers = true
         version {
-            desc = libraryDescription
+            desc = libDescription
         }
     }
 }
