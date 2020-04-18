@@ -75,7 +75,7 @@ bintray {
         desc = libDescription
         websiteUrl = webUrl
         vcsUrl = gitUrl
-        licenses = allLicenses
+        licenses = [licenseId]
         dryRun = false
         publish = true
         override = project.findProperty("overrideExisting") ?: false
