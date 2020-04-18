@@ -31,13 +31,17 @@ In order to upload the library, the next steps must be followed:
 	
 	ii. Add the following lines in your **project**'s level `build.gradle` file
 	
+	`maven_version` [ ![Download](https://api.bintray.com/packages/dcendents/gradle-plugins/com.github.dcendents%3Aandroid-maven-gradle-plugin/images/download.svg) ](https://bintray.com/dcendents/gradle-plugins/com.github.dcendents%3Aandroid-maven-gradle-plugin/_latestVersion)
+	
+	`bintray_version` [ ![Download](https://api.bintray.com/packages/jfrog/jfrog-jars/gradle-bintray-plugin/images/download.svg) ](https://bintray.com/jfrog/jfrog-jars/gradle-bintray-plugin/_latestVersion)
+	
 	```
 	buildscript {
 		//...
 		dependencies {
 			//...
-			classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
-			classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+			classpath "com.github.dcendents:android-maven-gradle-plugin:$maven_version"
+			classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintray_version"
 		}
 	}
 	```
