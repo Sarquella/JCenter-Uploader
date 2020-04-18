@@ -26,7 +26,6 @@ install {
             }
             developers {
                 developer {
-                    id developerId
                     name developerName
                     email developerEmail
                 }
