@@ -10,7 +10,7 @@ def libDescription = project.findProperty("libraryDescription") ?: ''
 install {
     repositories.mavenInstaller {
         pom.project {
-            packaging project.findProperty("packageFormat") ?: 'aar'
+            packaging 'aar'
             groupId publishedGroupId
             artifactId artifact
 
