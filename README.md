@@ -1,3 +1,10 @@
+# [DEPRECATED]
+As of **May 1st 2021** *JCenter* will be [shutting down](https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/). Please migrate to *MavenCentral*. 
+
+You can refer to [MavenCentral-Publisher](https://github.com/Sarquella/MavenCentral-Publisher) for a gradle plugin to simplify the process.
+
+---
+
 # JCenter Uploader
 
 A gradle script to easily upload Android libraries to *JCenter* for distribution.
